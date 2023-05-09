@@ -1,0 +1,10 @@
+type Query {
+    hypixelPlayer(name: String!): HypixelPlayer
+    discordUser(uuid: String!): DiscordUser
+}
+
+type Mutation {
+    addDiscordUser(uuid: String!): DiscordUser
+    removeDiscordUser(uuid: String!): DiscordUser
+    changeDiscordUser(uuid: String!): DiscordUser
+}

@@ -1,0 +1,10 @@
+type DiscordUser {
+    uuid: String!
+    dailyStreak: Int
+    xp: Int
+    lastDailyAt: Int
+    minutesInVoice: Int
+    messagesSent: Int
+    registeredAt: Int
+    hypixelPlayer: HypixelPlayer!
+}

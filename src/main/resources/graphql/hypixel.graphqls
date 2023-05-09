@@ -1,0 +1,4 @@
+type HypixelPlayer {
+    isTracked: Boolean!
+    discordUser: DiscordUser!
+}
