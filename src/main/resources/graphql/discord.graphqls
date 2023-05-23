@@ -1,4 +1,5 @@
 type DiscordUser {
+    id: ID!
     uuid: String!
     dailyStreak: Int
     xp: Int
@@ -6,5 +7,5 @@ type DiscordUser {
     minutesInVoice: Int
     messagesSent: Int
     registeredAt: Int
-    hypixelPlayer: HypixelPlayer!
+    linkedWith: HypixelPlayer!
 }

@@ -1,10 +1,17 @@
 type Query {
-    hypixelPlayer(name: String!): HypixelPlayer
-    discordUser(uuid: String!): DiscordUser
+    hypixelPlayer(name: ID!): HypixelPlayer
+    discordUser(uuid: ID!): DiscordUser
 }
 
 type Mutation {
+    addHypixelPlayer(name: String!): HypixelPlayer
+    removeHypixelPlayer(id: ID!): HypixelPlayer
+    changeHypixelPlayer(id: ID!, name: String, isTracked: Boolean): HypixelPlayer
+
+    linkDiscordUser(id: ID!): DiscordUser
+    unlinkDiscordUser(id: ID!): DiscordUser
+
     addDiscordUser(uuid: String!): DiscordUser
-    removeDiscordUser(uuid: String!): DiscordUser
-    changeDiscordUser(uuid: String!): DiscordUser
+    removeDiscordUser(id: ID!): DiscordUser
+    changeDiscordUser(id: ID!, uuid: String, dailyStreak: Int, xp: Int, lastDailyAt: Int, messagesSent: Int, registeredAt: Int): DiscordUser
 }
