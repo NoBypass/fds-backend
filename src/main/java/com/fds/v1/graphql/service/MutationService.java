@@ -7,9 +7,13 @@ import com.fds.v1.database.node.DiscordUser;
 import com.fds.v1.database.node.HypixelPlayer;
 import com.fds.v1.database.repository.LinkedWithRepository;
 import com.fds.v1.error.NotFoundException;
+import com.fds.v1.lib.Common;
 import graphql.kickstart.tools.GraphQLMutationResolver;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+
+import java.util.Map;
+
 
 @Service
 @Component
@@ -65,19 +69,12 @@ public class MutationService implements GraphQLMutationResolver {
         return discordUserRepository.removeById(id);
     }
 
-    public DiscordUser changeDiscordUser(String id, Long uuid, Integer dailyStreak, Integer xp, Integer lastDailyAt, Integer messagesSent, Integer registeredAt) {
+    public DiscordUser changeDiscordUser(String id, Map<String, Object> properties) {
         try {
             DiscordUser existing = discordUserRepository.getById(id);
             if (existing == null) throw new NotFoundException("User with id:" + id + " not found");
 
-            if (uuid != null) existing.setUuid(uuid);
-            if (dailyStreak != null) existing.setDailyStreak(dailyStreak);
-            if (xp != null) existing.setXp(xp);
-            if (lastDailyAt != null) existing.setLastDailyAt(lastDailyAt);
-            if (messagesSent != null) existing.setMessagesSent(messagesSent);
-            if (registeredAt != null) existing.setRegisteredAt(registeredAt);
-
-            return discordUserRepository.updateById(id, existing);
+            return discordUserRepository.updateById(id, Common.updateObjectWithMap(existing, properties));
         } catch (Exception e) {
             throw new RuntimeException("Failed to change Discord user", e);
         }
