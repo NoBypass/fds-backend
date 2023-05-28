@@ -1,14 +1,31 @@
-package com.fds.v1.graphql.node;
+package com.fds.v1.database.node;
 
+import com.fds.v1.lib.Common;
+import org.springframework.data.neo4j.core.schema.Id;
+import org.springframework.data.neo4j.core.schema.Node;
+
+import java.util.UUID;
+
+@Node
 public class DiscordUser {
+
+    public DiscordUser(long uuid) {
+        this.uuid = uuid;
+        this.id = UUID.randomUUID().toString();
+    }
+
+    public DiscordUser() {
+        this.id = Common.uuid("discord-user");
+    }
+
+    @Id
     private String id;
-    private String uuid;
+    private long uuid;
     private Integer dailyStreak;
     private Integer xp;
     private Integer lastDailyAt;
     private Integer messagesSent;
     private Integer registeredAt;
-    private HypixelPlayer linkedWith;
 
     public String getId() {
         return id;
@@ -18,11 +35,11 @@ public class DiscordUser {
         this.id = id;
     }
 
-    public String getUuid() {
+    public long getUuid() {
         return uuid;
     }
 
-    public void setUuid(String uuid) {
+    public void setUuid(long uuid) {
         this.uuid = uuid;
     }
 
@@ -66,11 +83,4 @@ public class DiscordUser {
         this.registeredAt = registeredAt;
     }
 
-    public HypixelPlayer getLinkedWith() {
-        return linkedWith;
-    }
-
-    public void setLinkedWith(HypixelPlayer linkedWith) {
-        this.linkedWith = linkedWith;
-    }
 }

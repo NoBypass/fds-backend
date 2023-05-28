@@ -1,6 +1,6 @@
 package com.fds.v1.graphql.controller;
 
-import com.fds.v1.graphql.node.DiscordUser;
+import com.fds.v1.database.node.DiscordUser;
 import com.fds.v1.graphql.service.MutationService;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
@@ -15,7 +15,7 @@ public class MutationController {
     }
 
     @MutationMapping
-    public DiscordUser addDiscordUser(@Argument String uuid) {
+    public DiscordUser addDiscordUser(@Argument long uuid) {
         return mutationService.addDiscordUser(uuid);
     }
 }

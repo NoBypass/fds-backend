@@ -1,8 +1,7 @@
 package com.fds.v1.lib;
 
-import com.redislabs.redisgraph.Record;
-
 import java.util.List;
+import java.util.UUID;
 
 public class Common {
     private static final String BASE36_CHARS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -23,14 +22,6 @@ public class Common {
         return result.toString();
     }
 
-    public static Integer intFromRecord(Record record, String varName) {
-        return Integer.parseInt(record.getValue(varName));
-    }
-
-    public static boolean boolFromRecord(Record record, String varName) {
-        return Boolean.parseBoolean(record.getValue(varName));
-    }
-
     public static String optionalQuery(String prefix, List<String> keys, List<String> values) {
         String query = "";
         for (String value : values) {
@@ -42,7 +33,7 @@ public class Common {
         return query;
     }
 
-    public static String generateUUID() {
-        return java.util.UUID.randomUUID() + "." + encodeBase36(System.currentTimeMillis());
+    public static String uuid(String label) {
+        return UUID.nameUUIDFromBytes((UUID.randomUUID() + label).getBytes()).toString();
     }
 }
