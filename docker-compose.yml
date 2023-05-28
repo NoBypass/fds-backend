@@ -1,0 +1,17 @@
+version: '3'
+services:
+  server:
+    build: .
+    ports:
+      - "8080:8080"
+  neo4j:
+    image: neo4j
+    environment:
+      - NEO4J_AUTH=neo4j/12345678
+      - NEO4J_dbms_default__database=fds
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    volumes:
+      - $HOME/neo4j/data:/data
+      - $HOME/neo4j/logs:/logs
