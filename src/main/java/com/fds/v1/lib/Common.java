@@ -1,8 +1,9 @@
 package com.fds.v1.lib;
 
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.util.*;
 
 public class Common {
     private static final String BASE36_CHARS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -59,5 +60,38 @@ public class Common {
             }
         }
         return o;
+    }
+
+    public static Map<String, Object> jsonNodeToMap(JsonNode jsonNode) {
+        Map<String, Object> resultMap = new HashMap<>();
+
+        if (jsonNode.isObject()) {
+            Iterator<Map.Entry<String, JsonNode>> fields = jsonNode.fields();
+            while (fields.hasNext()) {
+                Map.Entry<String, JsonNode> entry = fields.next();
+                String key = entry.getKey();
+                JsonNode value = entry.getValue();
+
+                if (value.isValueNode()) resultMap.put(key, convertValue(value));
+                else if (value.isObject() || value.isArray()) resultMap.put(key, jsonNodeToMap(value));
+            }
+        } else if (jsonNode.isArray()) {
+            int index = 0;
+            for (JsonNode arrayNode : jsonNode) {
+                resultMap.put(String.valueOf(index), jsonNodeToMap(arrayNode));
+                index++;
+            }
+        }
+
+        return resultMap;
+    }
+
+    private static Object convertValue(JsonNode valueNode) {
+        if (valueNode.isBoolean()) return valueNode.asBoolean();
+        else if (valueNode.isDouble()) return valueNode.asDouble();
+        else if (valueNode.isLong()) return valueNode.asLong();
+        else if (valueNode.isInt()) return valueNode.asInt();
+        else if (valueNode.isTextual()) return valueNode.asText();
+        else return null;
     }
 }
