@@ -1,4 +1,4 @@
-package com.fds.v1.error;
+package com.fds.v1.lib.error;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;

@@ -1,4 +1,4 @@
-package com.fds.v1.error;
+package com.fds.v1.lib.error;
 
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ProblemDetail;

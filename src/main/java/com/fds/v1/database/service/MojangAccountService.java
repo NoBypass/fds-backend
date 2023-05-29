@@ -1,10 +1,9 @@
-package com.fds.v1.graphql.service;
+package com.fds.v1.database.service;
 
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 @Service
 @Component
-public class PlayedUsingService {
-
+public class MojangAccountService {
 }

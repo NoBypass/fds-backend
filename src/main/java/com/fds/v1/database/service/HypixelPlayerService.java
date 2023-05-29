@@ -1,8 +1,8 @@
-package com.fds.v1.graphql.service;
+package com.fds.v1.database.service;
 
 import com.fds.v1.database.node.HypixelPlayer;
 import com.fds.v1.database.repository.HypixelPlayerRepository;
-import com.fds.v1.error.NotFoundException;
+import com.fds.v1.lib.error.NotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
