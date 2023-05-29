@@ -1,0 +1,5 @@
+type PlayedUsing {
+    id: ID!
+    registeredAt: Int!
+    hypixelPlayer: HypixelPlayer!
+}

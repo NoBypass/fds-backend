@@ -1,0 +1,5 @@
+type MojangAccount {
+    id: ID!
+    name: String!
+    uuid: String!
+}
