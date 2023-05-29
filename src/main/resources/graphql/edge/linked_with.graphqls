@@ -1,0 +1,6 @@
+type LinkedWith {
+    id: ID!
+    linkedAt: Int!
+    linkedByName: String!
+    linkedWith: DiscordUser!
+}
