@@ -33,7 +33,16 @@
 ``Docker`` is recommended to more easily run the project. [Download Docker](https://www.docker.com/products/docker-desktop)
 
 ### Run
-**Docker**: Run the following command in the root directory of the project.
+Create a ``application.properties`` file in the ``src/main/resources`` directory.\
+Add the following lines to the file and replace the values with your own.
+```properties
+spring.neo4j.authentication.username=neo4j
+spring.neo4j.authentication.password=12345678
+jwt.secret=secret
+hypixel.api-key=12345678-1234-1234-1234-123456789012
+```
+It's also recommended to change the database password in the ``docker-compose.yml`` file when using Docker.\
+Run the following command in the root directory of the project.
 ```shell 
 docker build -t fds-backend .
 docker run --name fds-backend -p 8080:8080 -p 7474:7474 -p 7687:7687 fds-backend
