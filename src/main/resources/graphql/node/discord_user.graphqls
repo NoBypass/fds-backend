@@ -1,6 +1,6 @@
 type DiscordUser {
     id: ID!
-    uuid: String!
+    uuid: Int!
     dailyStreak: Int
     xp: Int
     lastDailyAt: Int
