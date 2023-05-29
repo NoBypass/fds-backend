@@ -9,20 +9,20 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LinkedWithRepository extends Neo4jRepository<DiscordUser, String> {
-    @Query("MATCH (d:DiscordUser), (u:User) " +
-            "WHERE d.id = $discordUserId AND u.id = $userId " +
+    @Query("MATCH (d:DiscordUser), (h:HypixelPlayer) " +
+            "WHERE d.id = $discordUserId AND h.id = hypixelPlayerId " +
             "CREATE (d)-[l:LINKED_WITH]->(u) " +
-            "SET l.linkedAt = timestamp(), l.linkedByName = $linkedByName " +
+            "SET l = $linkedWith " +
             "RETURN l")
-    LinkedWith linkWith(@Param("discordUserId") String discordUserId, @Param("hypixelPlayerId") String hypixelPlayerId, @Param("linkedByName") String linkedByName);
+    LinkedWith linkWith(@Param("linkedWith") LinkedWith linkedWith);
 
-    @Query("MATCH (d:DiscordUser)-[l:LINKED_WITH]->(u:User) " +
-            "WHERE d.id = $discordUserId AND u.id = $hypixelPlayerId " +
+    @Query("MATCH (d:DiscordUser)-[l:LINKED_WITH]->() " +
+            "WHERE d.id = $discordUserId " +
             "DELETE l " +
             "RETURN l")
-    LinkedWith unlinkFrom(String discordUserId, String hypixelPlayerId);
+    LinkedWith unlinkFrom(String discordUserId);
 
-    @Query("MATCH (d:DiscordUser)-[l:LINKED_WITH]->(u:User) WHERE l.id = $id RETURN l")
+    @Query("MATCH (d:DiscordUser)-[l:LINKED_WITH]->(h:HypixelPlayer) WHERE l.id = $id RETURN l")
     LinkedWith findLinkedWithById(@Param("id") String id);
 
 }

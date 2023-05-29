@@ -13,6 +13,13 @@ public class LinkedWith {
         this.id = Common.uuid("linked-with");
     }
 
+    public LinkedWith(DiscordUser discordUser, long linkedAt, String linkedByName) {
+        this.discordUser = discordUser;
+        this.linkedAt = linkedAt;
+        this.linkedByName = linkedByName;
+        this.id = Common.uuid("linked-with");
+    }
+
     @Id
     private String id;
 

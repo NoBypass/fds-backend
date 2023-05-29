@@ -1,8 +1,10 @@
 package com.fds.v1.database.node;
 
+import com.fds.v1.database.edge.PlayedUsing;
 import com.fds.v1.lib.Common;
 import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.Node;
+import org.springframework.data.neo4j.core.schema.Relationship;
 
 @Node
 public class MojangAccount {
@@ -20,6 +22,8 @@ public class MojangAccount {
     private String id;
     private String name;
     private String uuid;
+    @Relationship("PLAYED_USING")
+    private PlayedUsing playedUsing;
 
     public String getId() {
         return id;
@@ -43,5 +47,13 @@ public class MojangAccount {
 
     public void setUuid(String uuid) {
         this.uuid = uuid;
+    }
+
+    public PlayedUsing getPlayedUsing() {
+        return playedUsing;
+    }
+
+    public void setPlayedUsing(PlayedUsing playedUsing) {
+        this.playedUsing = playedUsing;
     }
 }
