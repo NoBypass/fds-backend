@@ -43,6 +43,7 @@ docker run --name fds-backend -p 8080:8080 -p 7474:7474 -p 7687:7687 fds-backend
 
 ## API
 ### GraphQL
+**Route:** ``/graphql``
 #### Queries
 ```graphql
 hypixelPlayer(name: ID!): HypixelPlayer # Get a Hypixel player by their Minecraft username.
